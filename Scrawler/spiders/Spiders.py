@@ -12,12 +12,16 @@ class MeiziSpider(scrapy.Spider):
     download_delay = 0.01
     allowed_domains = ["meizitu.com"]
     start_urls = (
-        'http://www.meizitu.com/a/xinggan.html',
+         #'http://www.meizitu.com/a/xinggan.html',
+        # 'http://www.meizitu.com/a/list_1_1.html',
+        'http://www.meizitu.com/a/sifang.html',
     )
 
     def parse(self, response):
         sel = Selector(response)
         for link in sel.xpath('//h3/a/@href').extract():
+      #  for link in sel.xpath('//*[@id="wp-item"]/div/h3/a/@href').extract():
+      #      print 'okok  ok ok ok ok o k'
             request = scrapy.Request(link, callback=self.parse_item)
             yield request  # 返回请求
         # 获取页码集合
