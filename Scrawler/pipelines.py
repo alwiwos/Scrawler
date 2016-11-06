@@ -33,7 +33,7 @@ class ImageDownloadPipeline(object):
                     continue
 
                 with open(file_path, 'wb') as handle:
-                    response = requests.get(image_url, stream=True)
+                    response = requests.get(image_url, headers={'User-Agent': "your agent string"}, stream=True)
                     for block in response.iter_content(1024):
                         if not block:
                             break

@@ -14,7 +14,9 @@ BOT_NAME = 'Scrawler'
 SPIDER_MODULES = ['Scrawler.spiders']
 NEWSPIDER_MODULE = 'Scrawler.spiders'
 
-COOKIES_ENABLED = False
+COOKIES_ENABLED = True
+
+#DEPTH_LIMIT = 5
 
 ITEM_PIPELINES = {'Scrawler.pipelines.ImageDownloadPipeline': 1}
 
