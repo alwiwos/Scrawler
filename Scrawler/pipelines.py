@@ -6,7 +6,6 @@
 # See: http://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
 
-#!/usr/bin/python
 # -*- coding:utf-8 -*-
 
 import requests
