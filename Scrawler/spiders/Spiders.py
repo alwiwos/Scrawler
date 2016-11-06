@@ -9,7 +9,7 @@ from Scrawler.items import MeizituItem
 
 class MeiziSpider(scrapy.Spider):
     name = "Scrawler"
-    download_delay = 0.01
+    download_delay = 0.1
     allowed_domains = ["meizitu.com"]
     start_urls = (
          #'http://www.meizitu.com/a/xinggan.html',

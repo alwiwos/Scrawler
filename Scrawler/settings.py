@@ -14,12 +14,17 @@ BOT_NAME = 'Scrawler'
 SPIDER_MODULES = ['Scrawler.spiders']
 NEWSPIDER_MODULE = 'Scrawler.spiders'
 
-COOKIES_ENABLED = True
+COOKIES_ENABLED = False
 
 #DEPTH_LIMIT = 5
 
 ITEM_PIPELINES = {'Scrawler.pipelines.ImageDownloadPipeline': 1}
 
+
+DOWNLOADER_MIDDLEWARES = {
+        'scrapy.contrib.downloadermiddleware.useragent.UserAgentMiddleware' : None,
+        'Scrawler.spiders.rotate_useragent.RotateUserAgentMiddleware' :400
+    }
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'Scrawler (+http://www.yourdomain.com)'
 
