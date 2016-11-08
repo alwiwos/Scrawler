@@ -14,7 +14,9 @@ class MeiziSpider(scrapy.Spider):
     start_urls = (
          #'http://www.meizitu.com/a/xinggan.html',
         # 'http://www.meizitu.com/a/list_1_1.html',
-        'http://www.meizitu.com/a/sifang.html',
+        #'http://www.meizitu.com/a/sifang.html',
+
+        'http://www.meizitu.com/a/qingchun.html',
     )
 
     def parse(self, response):

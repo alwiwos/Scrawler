@@ -6,7 +6,7 @@ from scrapy import log
 
 使用注意：需在settings.py中进行相应的设置。
 """
-
+import base64
 import random
 from scrapy.contrib.downloadermiddleware.useragent import UserAgentMiddleware
 
@@ -22,7 +22,7 @@ class RotateUserAgentMiddleware(UserAgentMiddleware):
             print "********Current UserAgent:%s************" %ua
 
             #记录
-            log.msg('Current UserAgent: '+ua, level='INFO')
+            log.msg('Current UserAgent: '+ua, level=20)
             request.headers.setdefault('User-Agent', ua)
 
     #the default user_agent_list composes chrome,I E,firefox,Mozilla,opera,netscape
@@ -63,7 +63,30 @@ class RotateUserAgentMiddleware(UserAgentMiddleware):
         "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.24 "
         "(KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24",
         "Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/535.24 "
-        "(KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24"，
+        "(KHTML, like Gecko) Chrome/19.0.1055.1 Safari/535.24",
         "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_6) AppleWebKit/537.36"
         "(KHTML, like Gecko) Chrome/54.0.2840.71 Safari/537.36"
-       ]
+        ]
+
+
+class ProxyMiddleware(object):
+    def process_request(self, request):
+        proxy = random.choice(PROXIES)
+        if proxy['user_pass'] is not None:
+            request.meta['proxy'] = "http://%s" % proxy['ip_port']
+            encoded_user_pass = base64.encodestring(proxy['user_pass'])
+            request.headers['Proxy-Authorization'] = 'Basic' + encoded_user_pass
+            print "**************ProxyMiddleware is pass************"+proxy['ip_port']
+        else:
+			print "**************ProxyMiddleware no pass************" + proxy['ip_port']
+			request.meta['proxy'] = "http://%s" % proxy['ip_port']
+
+
+PROXIES = [
+        {'ip_port': '122.96.59.98:80', 'user_pass': ''},
+        {'ip_port': '120.198.243.22:80', 'user_pass': ''},
+	    {'ip_port': '111.8.60.9:8123', 'user_pass': ''},
+	    {'ip_port': '101.71.27.120:80', 'user_pass': ''},
+	    {'ip_port': '122.96.59.104:80', 'user_pass': ''},
+	    {'ip_port': '122.224.249.122:8088', 'user_pass': ''},
+]

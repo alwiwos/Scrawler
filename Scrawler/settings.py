@@ -22,8 +22,8 @@ ITEM_PIPELINES = {'Scrawler.pipelines.ImageDownloadPipeline': 1}
 
 
 DOWNLOADER_MIDDLEWARES = {
-        'scrapy.contrib.downloadermiddleware.useragent.UserAgentMiddleware' : None,
-        'Scrawler.spiders.rotate_useragent.RotateUserAgentMiddleware' :400
+        'scrapy.contrib.downloadermiddleware.useragent.UserAgentMiddleware': None,
+        'Scrawler.spiders.rotate_useragent.RotateUserAgentMiddleware': 400
     }
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'Scrawler (+http://www.yourdomain.com)'
